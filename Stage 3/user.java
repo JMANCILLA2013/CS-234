@@ -1,4 +1,4 @@
 interface user {
-    boolean login(String userInputEmail, String userinputPassword);
-    boolean logout();
+    void login(String userInputEmail, String userinputPassword);
+    void logout();
 }

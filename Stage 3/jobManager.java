@@ -1,34 +1,42 @@
 import java.util.Scanner;
-public class jobManager {
+public class jobManager implements user{
     private boolean isLoggedIn;
     private String email;
     private String password;
 
-    public jobManager(String email, String password){
+    public jobManager(){
         isLoggedIn = false;
-        this.email = email;
-        this.password = password;
+        this.createLoginCredentials();
     }
 
     public void createLoginCredentials(){
-        //TODO: Add functionality listed below
-        //prompt user to give a password and email and do error handling
-    
-    }
-    
+        Scanner scanner = new Scanner(System.in);
 
-    public boolean login(String userInputEmail, String userinputPassword){
-        //TODO: Add functionality listed below
-        // if  userinputEmail == email && userInputPassword == password
-        // then set is LoggedIn to true
-        // else return error 
-        return isLoggedIn;
+        System.out.print("Enter your email: ");
+        String newEmail = scanner.nextLine();
+
+        System.out.print("Enter your password: ");
+        String newPassword = scanner.nextLine();
+        scanner.close();
+        this.email = newEmail;
+        this.password = newPassword;
+    }
+    public String getEmail(){
+        return email;
     }
 
-    
-    public boolean logout(){
+    public void login(String userInputEmail, String userInputPassword) {
+        boolean validCredentials = userInputEmail.equals(email) && userInputPassword.equals(password);
+
+        if (validCredentials) {
+            isLoggedIn = true;
+            System.out.println("LOGGED IN!");
+        }
+
+    }
+
+    public void logout(){
         isLoggedIn = false;
-        return isLoggedIn;
     }
 
     public void deleteJob(boolean isLoggedIn){

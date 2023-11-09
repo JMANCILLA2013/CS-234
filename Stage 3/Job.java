@@ -3,16 +3,14 @@ public class Job{
     private String Position;
     private String Description;
     private String Salary;
-
+    private JobIDGenerator generator = new JobIDGenerator();
     //Constructor
-    public Job(String JobID, String Position, String Description, String Salary){
-        this.JobID = JobID;
+    public Job(){
+        this.JobID = generator.generateJobID();
         this.Position = "";
         this.Description = "";
         this.Salary = "";
     }
-
-    //TODO: RandomlyGenerateJobID
 
     public void setPosition(String enteredPosition){
         Position = enteredPosition;
@@ -25,7 +23,9 @@ public class Job{
     public void setSalary(String enteredSalary){
         Salary = enteredSalary;
     }
-
+    public String getJobID(){    
+        return JobID;
+    }
     public String getSalary(){
         return Salary;
     }
