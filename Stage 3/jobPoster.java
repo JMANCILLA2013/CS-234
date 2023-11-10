@@ -1,8 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public class jobPoster implements user{
     private boolean isLoggedIn;
     private String email;
     private String password;
+    private ArrayList<Job> jobsPosted;
 
     public jobPoster(String email, String password){
         isLoggedIn = false;
@@ -11,23 +13,34 @@ public class jobPoster implements user{
     }
 
     public void createLoginCredentials(){
-        //TODO: Add functionality listed below
-        //prompt user to give a password and email and do error handling
-    
+        Scanner createscanner = new Scanner(System.in);
+
+        System.out.print("Enter your email: ");
+        String newEmail = createscanner.nextLine();
+
+        System.out.print("Enter your password: ");
+        String newPassword = createscanner.nextLine();
+        createscanner.close();
+        this.email = newEmail;
+        this.password = newPassword;
     }
 
+    public String getEmail(){
+        return email;
+    }
     
-    public boolean login(String userInputEmail, String userinputPassword){
-        //TODO: Add functionality listed below
-        // if  userinputEmail == email && userInputPassword == password
-        // then set is LoggedIn to true
-        // else return error 
-        return isLoggedIn;
+    public void login(String userInputEmail, String userInputPassword){
+        boolean validCredentials = userInputEmail.equals(email) && userInputPassword.equals(password);
+
+        if (validCredentials) {
+            isLoggedIn = true;
+            System.out.println("LOGGED IN!");
+        }
     }
 
-    
-    public boolean logout(){
+    public  void logout(){
         isLoggedIn = false;
-        return isLoggedIn;
     }
+    //TODO: Allow jobposter to create a job
+    //TODO: Allow jobposter to see all jobs they have posted
 }

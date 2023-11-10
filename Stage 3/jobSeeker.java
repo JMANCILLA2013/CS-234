@@ -26,8 +26,10 @@ public class jobSeeker {
     }
 
 
-    public boolean logout(){
+    public  void logout(){
         isLoggedIn = false;
-        return isLoggedIn;
+
     }
+    //TODO: See all jobs
+    //
 }

@@ -1,11 +1,8 @@
-import java.util.Scanner;
-
-
-
 
 public class Main{
 
     public static void main(String[] args) {
+        String jobIDToDelete = "1";
         //Create Database
         Database database = new Database();
         //Create Job Manager
@@ -20,5 +17,7 @@ public class Main{
         System.out.println(job.getJobID());
         database.addJob(job);
         database.addUser(Bill);
+        System.out.println("Enter the job ID to delete:");
+        jobManager.deleteJob(database, jobIDToDelete);
     }
 }

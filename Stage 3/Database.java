@@ -3,9 +3,11 @@ import java.util.ArrayList;
 public class Database {
     private ArrayList<Job> jobs;
     private ArrayList<user> users;
-    //TODO: Create an arraylist of pending jobs
+    private ArrayList<Job> pendingJobs;
     public Database(){
         this.jobs = new ArrayList<>();
+        this.users = new ArrayList<>();
+        this.pendingJobs = new ArrayList<>();
     }
 
     public void addJob(Job job){
@@ -16,5 +18,15 @@ public class Database {
     }
     public void addUser(user user){
         users.add(user);
+    }
+
+    //TODO: ADD PENDING JOB
+
+    public ArrayList<Job> getJobs() {
+        return jobs;
+    }
+
+    public ArrayList<Job> getPendingJobs() {
+        return pendingJobs;
     }
 }
