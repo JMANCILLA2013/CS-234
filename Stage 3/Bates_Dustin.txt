@@ -1,0 +1,2 @@
+Dustin Bates
+Contributed to bug repair, core operations, JobIDGenerator.java, and designed the user guide.
