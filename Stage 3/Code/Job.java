@@ -1,40 +1,73 @@
-public class Job{
-    private String JobID;
-    private String Position;
-    private String Description;
-    private String Salary;
+public class Job {
+    private String jobID;
+    private String position;
+    private String description;
+    private String salary;
+    private String contactPerson;
+    private String contactEmail;
+    private String contactPhone;
     private JobIDGenerator generator = new JobIDGenerator();
-    //Constructor
-    public Job(){
-        this.JobID = generator.generateJobID();
-        this.Position = "";
-        this.Description = "";
-        this.Salary = "";
+
+    public Job() {
+        this.jobID = generator.generateJobID();
+        this.position = "";
+        this.description = "";
+        this.salary = "";
+        this.contactPerson = "";
+        this.contactEmail = "";
+        this.contactPhone = "";
     }
 
-    public void setPosition(String enteredPosition){
-        Position = enteredPosition;
+    public void setPosition(String enteredPosition) {
+        position = enteredPosition;
     }
 
-    public void setDescription(String enteredDescription){
-        Description = enteredDescription;
+    public void setDescription(String enteredDescription) {
+        description = enteredDescription;
     }
 
-    public void setSalary(String enteredSalary){
-        Salary = enteredSalary;
-    }
-    public String getJobID(){    
-        return JobID;
-    }
-    public String getSalary(){
-        return Salary;
+    public void setSalary(String enteredSalary) {
+        salary = enteredSalary;
     }
 
-    public String getDescription(){
-        return Description;
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
     }
 
-    public String getPosition(){
-        return Position;
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public String getJobID() {
+        return jobID;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public String getContactPerson() {
+        return contactPerson;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
     }
 }
+
