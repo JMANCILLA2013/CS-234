@@ -1,12 +1,10 @@
 import java.util.ArrayList;
-
 import java.util.Iterator;
-
 import javax.swing.*;
-
 import java.awt.*;
+import java.io.Serializable;
 
-public class jobPoster implements user {
+public class jobPoster implements user, Serializable {
     private boolean isLoggedIn;
     private String email;
     private String password;

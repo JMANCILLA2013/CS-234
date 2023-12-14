@@ -1,12 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class JobManagementGUI {
     private JFrame frame;
     private Database database;
+
     public JobManagementGUI() {
-        database = new Database();
+        database = Database.loadData();
         frame = new JFrame("Job Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 300);
@@ -42,7 +44,7 @@ public class JobManagementGUI {
                 JOptionPane.showMessageDialog(frame, "Creating JobManager...");
                 user jobManagerUser = new jobManager();
                 if (jobManagerUser instanceof jobManager) {
-                    ((jobManager) jobManagerUser).createLoginCredentialsGUI(); // Assuming this is necessary for a jobManager to be functional
+                    ((jobManager) jobManagerUser).createLoginCredentialsGUI();
                     database.addUser(jobManagerUser);
                 }
             } else if (optionChosen == 1) {
@@ -58,7 +60,7 @@ public class JobManagementGUI {
         loginButton.addActionListener(e -> {
             String email = JOptionPane.showInputDialog(frame, "Enter your email:");
             String password = JOptionPane.showInputDialog(frame, "Enter your password:");
-        
+
             boolean loggedIn = false;
             for (user currentUser : database.getUsers()) {
                 if (currentUser.getEmail().equals(email)) {
@@ -66,7 +68,7 @@ public class JobManagementGUI {
                     break;
                 }
             }
-        
+
             if (loggedIn) {
                 user loggedInUser = null;
                 for (user currentUser : database.getUsers()) {
@@ -75,7 +77,7 @@ public class JobManagementGUI {
                         break;
                     }
                 }
-            
+
                 if (loggedInUser != null) {
                     if (loggedInUser instanceof jobManager) {
                         ((jobManager) loggedInUser).setLoggedIn(true);
@@ -89,7 +91,6 @@ public class JobManagementGUI {
                 JOptionPane.showMessageDialog(frame, "Invalid email or password. Please try again.");
             }
         });
-        
 
         showJobsButton.addActionListener(e -> {
             database.printJobs();
@@ -98,11 +99,31 @@ public class JobManagementGUI {
         searchJob.addActionListener(e -> {
             database.getJobByID();
         });
+
         frame.getContentPane().setLayout(new BorderLayout());
         frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 
+        initializeShutdownHook(); // Add the shutdown hook
+
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    private void initializeShutdownHook() {
+        // Add a shutdown hook to save data when the program is terminated
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            database.saveData();
+            System.out.println("Data saved during program shutdown.");
+        }));
+
+        // Add a window listener to save data when the GUI window is closed
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                database.saveData();
+                System.out.println("Data saved on GUI window close.");
+            }
+        });
     }
 
     public static void main(String[] args) {

@@ -1,4 +1,6 @@
-public class Job {
+import java.io.Serializable;
+
+public class Job implements Serializable {
     private String jobID;
     private String position;
     private String description;
@@ -6,7 +8,7 @@ public class Job {
     private String contactPerson;
     private String contactEmail;
     private String contactPhone;
-    private JobIDGenerator generator = new JobIDGenerator();
+    private transient JobIDGenerator generator = new JobIDGenerator();
 
     public Job() {
         this.jobID = generator.generateJobID();
@@ -70,4 +72,5 @@ public class Job {
         return contactPhone;
     }
 }
+
 

@@ -1,9 +1,9 @@
 import java.util.ArrayList;
-
+import java.io.Serializable;
 import javax.swing.*;
 import java.awt.*;
 
-public class jobManager implements user {
+public class jobManager implements user, Serializable {
     private boolean isLoggedIn;
     private String email;
     private String password;

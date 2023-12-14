@@ -5,4 +5,5 @@ public interface user {
     String getEmail();
     boolean isLoggedIn();
     String getUserType();
+    
 }
