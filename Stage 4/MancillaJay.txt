@@ -1,1 +1,0 @@
-In stage 4 I revised our UML adding multiplicites.  I helped with input for code and GUI(not as much as others, had some difficulty implementing logic for GUI), and I put together the user guide.
